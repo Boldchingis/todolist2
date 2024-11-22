@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <main>
+      <section>
+        <div class="navbar">
+          <div>
+            <button class="AddButton" onclick="addTask()">Add to do</button>
+          </div>
+        </div>
+        <div id="modal">
+          <div class="modal-content">
+            <h2>Enter Task</h2>
+            <input type="text" id="task-name" />
+            <label for="cars"></label>
+            <select id="task-status">
+              <option value="todo">To Do</option>
+              <option value="in-progress">In progress</option>
+              <option value="Done">Done</option>
+              <option value="Blocked">Blocked</option>
+            </select>
+            <button onclick="saveTask()">Submit</button>
+          </div>
+        </div>
+
+        <div id="tasks" class="tasks"></div>
+        <div class="card-container">
+          <div class="card1">
+            <div class="dot1"></div>
+            <div class="todoTitle">To Do</div>
+            <div id="todo-tasks"></div>
+          </div>
+          <div class="card2">
+            <div class="dot2"></div>
+            <div class="todoTitle">In progress</div>
+            <div id="in-progress-tasks"></div>
+          </div>
+          <div class="card3">
+            <div class="dot3"></div>
+            <div class="todoTitle">Done</div>
+            <div id="done-tasks"></div>
+          </div>
+          <div class="card4">
+            <div class="dot4"></div>
+            <div class="todoTitle">Blocked</div>
+            <div id="blocked-tasks"></div>
+          </div>
+        </div>
+        <script src="/index.js"></script>
+      </section>
+    </main>
+  </body>
+</html>

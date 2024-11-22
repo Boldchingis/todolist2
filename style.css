@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+section {
+  background-color: #1b1b1b;
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.tasks {
+  background-color: #1a1a1a;
+  color: #d9d9d9;
+  width: 18.75rem;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 8px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+}
+
+.AddButton {
+  font-size: 10px;
+  background-color: #00a300;
+  color: white;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 4px;
+  width: 80px;
+  height: 35px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.AddButton:hover {
+  border-radius: 20px;
+  background-color: #009900;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card1,
+.card2,
+.card3,
+.card4 {
+  background-color: #101010;
+  height: 672px;
+  width: 280px;
+  border: 1px solid #333333;
+  gap: 1px;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dot1,
+.dot2,
+.dot3,
+.dot4 {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dot1 {
+  background-color: #d9d9d9;
+}
+.dot2 {
+  background-color: #a3a300;
+}
+.dot3 {
+  background-color: #00a300;
+}
+.dot4 {
+  background-color: #a30000;
+}
+
+.todoTitle {
+  font-weight: 700;
+  color: white;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.todo-item {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: white;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid #dddddd37;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.todo-item i {
+  margin-left: 10px;
+  cursor: pointer;
+}
+.fa-solid {
+  color: rgba(255, 255, 255, 0.507);
+  transition: all 0.2s;
+}
+.fa-solid:hover {
+  color: white;
+}
+.fa-trash {
+  color: rgba(255, 0, 0, 0.5);
+  transition: all 0.2s;
+}
+.fa-trash:hover {
+  color: red;
+}
+
+#modal {
+  position: fixed;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 3;
+  display: none;
+}
+
+.modal-content {
+  background-color: #1e1e1e;
+  margin: 100px auto;
+  width: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  padding: 12px;
+  color: white;
+  gap: 10px;
+}
+
+.modal-content input,
+.modal-content select {
+  border: 1px solid #999999;
+  border-radius: 4px;
+  background-color: transparent;
+  width: 290px;
+  height: 44px;
+  color: grey;
+}
+
+.modal-content h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+}
+
+.modal-content button {
+  margin-top: 20px;
+  font-size: 16px;
+  background-color: #00a300;
+  color: white;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 4px;
+  width: 290px;
+  height: 44px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #009900;
+}
