@@ -122,22 +122,26 @@ section {
   margin-left: 10px;
   cursor: pointer;
 }
+
 .fa-solid {
   color: rgba(255, 255, 255, 0.507);
   transition: all 0.2s;
 }
+
 .fa-solid:hover {
   color: white;
 }
+
 .fa-trash {
   color: rgba(255, 0, 0, 0.5);
   transition: all 0.2s;
 }
+
 .fa-trash:hover {
   color: red;
 }
 
-#modal {
+#modal, #edit-modal, #delete-modal {
   position: fixed;
   top: 0%;
   bottom: 0%;
@@ -174,14 +178,16 @@ section {
 
 .modal-content h2 {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 700;
   color: white;
+  display: flex;
+  justify-content: center;
 }
 
 .modal-content button {
   margin-top: 20px;
-  font-size: 16px;
+  font-size: 14px;
   background-color: #00a300;
   color: white;
   font-weight: 700;
@@ -195,4 +201,20 @@ section {
 
 .modal-content button:hover {
   background-color: #009900;
+}
+
+#edit-modal button {
+  background-color: #009900;
+}
+
+#edit-modal button:hover {
+  background-color: #036903;
+}
+
+#delete-modal button {
+  background-color: #a30000;
+}
+
+#delete-modal button:hover {
+  background-color: #cc0000;
 }

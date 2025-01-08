@@ -1,10 +1,14 @@
-const STATUS = "TODO" || "DONE";
-
+const STATUS = ["todo", "in-progress", "done", "blocked"];
 let todos = [];
 
-// Todo add
 function addOne(newTodo) {
   todos.push(newTodo);
+}
+
+function editName(index, name) {
+  let item = todos[index];
+  item.name = name;
+  render();
 }
 
 function editStatus(index, status) {
@@ -13,45 +17,11 @@ function editStatus(index, status) {
   render();
 }
 
-// Name update: Func
-function editName(index, name) {
-  let item = todos[index];
-  item.name = name;
-  render();
-}
-
-// Todo delete one item
 function deleteOne(index) {
-  let arr = [];
-  for (let i = 0; i < todos.length; i++) {
-    if (i !== index) {
-      arr.push(todos[i]);
-    }
-  }
-  todos = arr;
+  todos.splice(index, 1);
   render();
 }
 
-// Todo delete all
-function deleteAll() {
-  todos = [];
-  render();
-}
-
-// Count DONE
-function countDone() {
-  let count = 0;
-  for (let i = 0; i < todos.length; i++) {
-    let item = todos[i];
-    if (item.status === "DONE") {
-      count++;
-    }
-  }
-  return count;
-}
-
-// RUNNING APPLICATION
-// selecter go bruhhhhh
 function render() {
   const todoList = document.querySelector("#todo-tasks");
   const inProgressList = document.querySelector("#in-progress-tasks");
@@ -62,82 +32,112 @@ function render() {
   inProgressList.innerHTML = "";
   doneList.innerHTML = "";
   blockedList.innerHTML = "";
-  // inner html
 
-  for (let i = 0; i < todos.length; i++) {
-    const item = todos[i];
+  todos.forEach((item, i) => {
     const element = document.createElement("div");
     element.classList.add("todo-item");
 
-    // Create task name element
     const titleEl = document.createElement("p");
     titleEl.innerText = item.name;
 
-    // Create edit button
     const editBtnEl = document.createElement("i");
     editBtnEl.classList.add("fa-solid", "fa-pen");
     editBtnEl.onclick = function () {
-      const newName = prompt("Enter new name");
-      editName(i, newName);
+      openEditModal(i);
     };
 
-    // Create delete button
     const deleteBtnEl = document.createElement("i");
     deleteBtnEl.classList.add("fa-trash", "fa-solid");
     deleteBtnEl.onclick = function () {
-      deleteOne(i);
+      openDeleteModal(i);
     };
-
-    // Append elements to task container
 
     element.appendChild(titleEl);
     element.appendChild(editBtnEl);
     element.appendChild(deleteBtnEl);
 
-    //if selecter
     if (item.status === "todo") {
       todoList.appendChild(element);
     } else if (item.status === "in-progress") {
       inProgressList.appendChild(element);
-    } else if (item.status === "Done") {
+    } else if (item.status === "done") {
       doneList.appendChild(element);
-    } else if (item.status === "Blocked") {
+    } else if (item.status === "blocked") {
       blockedList.appendChild(element);
     }
-  }
-  // if selecter end
+  });
 }
 
-// Add new task (show modal)
 function addTask() {
   const modal = document.querySelector("#modal");
-  modal.style.display = "block"; // Show modal
+  modal.style.display = "block";
 }
 
-// Save task and hide modal
 function saveTask() {
   const inputValue = document.getElementById("task-name").value;
   const taskStatus = document.getElementById("task-status").value;
 
-  // Push new task to todos array
+  if (!inputValue.trim()) {
+    alert("Please enter a task name.");
+    return;
+  }
+
   todos.push({
     name: inputValue,
     status: taskStatus,
   });
 
-  // Render tasks and close the modal
   render();
   const modal = document.querySelector("#modal");
-  modal.style.display = "none"; // Hide modal
+  modal.style.display = "none";
 
   document.getElementById("task-name").value = "";
   document.getElementById("task-status").value = "todo";
 }
 
+
+function openEditModal(index) {
+  const modal = document.querySelector("#edit-modal");
+  const task = todos[index];
+
+  document.getElementById("task-name-edit").value = task.name;
+  document.getElementById("task-status-edit").value = task.status;
+
+  modal.style.display = "block";
+
+  //  saving the edited task
+  document.getElementById("save-edit-btn").onclick = function() {
+    const newName = document.getElementById("task-name-edit").value;
+    const newStatus = document.getElementById("task-status-edit").value;
+
+    if (newName.trim() !== "") {
+      editName(index, newName);
+      editStatus(index, newStatus);
+    }
+
+    modal.style.display = "none";
+  };
+}
+
+// Show delete modal
+function openDeleteModal(index) {
+  const modal = document.querySelector("#delete-modal");
+
+  // Confirm delete
+  document.getElementById("confirm-delete-btn").onclick = function() {
+    deleteOne(index);
+    modal.style.display = "none";
+  };
+
+  modal.style.display = "block";
+}
+
 // Close modal
 window.onclick = function (event) {
-  const modal = document.querySelector("#modal");
-  if (event.target === modal) {
-    modal.style.display = "none";
-  }
+  const modals = [document.querySelector("#modal"), document.querySelector("#edit-modal"), document.querySelector("#delete-modal")];
+  modals.forEach(modal => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
 };
